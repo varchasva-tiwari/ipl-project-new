@@ -60,8 +60,8 @@ public class IPLAnalysis {
                 }
                 //Second part end
 
-                if(year == 2016)
-                    idList1.add(Integer.parseInt(matches[0])); //Id of all matches held in 2016
+                if(year == 2017)
+                    idList1.add(Integer.parseInt(matches[0])); //Id of all matches held in 2017
 
                 if(year == 2015)
                     idList2.add(Integer.parseInt(matches[0])); //Id of all matches held in 2015
@@ -148,7 +148,7 @@ public class IPLAnalysis {
         System.out.println();
 
         System.out.println("PART 3\n");
-        System.out.println("Bowling Team : Extra runs given in 2016\n");
+        System.out.println("Bowling Team : Extra runs given in 2017\n");
         for (Map.Entry<String, Integer> es : extraRuns.entrySet()) {
             System.out.println(es.getKey() + " : " + es.getValue());
         }
