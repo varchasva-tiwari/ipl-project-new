@@ -9,6 +9,7 @@ public class Main {
     private static String lineOfFile;
     private static String winner;
     private static String bowlerName;
+    private static String bowlTeam;
 
     private static List<Match> matches = new ArrayList();
     private static List<Delivery> deliveries = new ArrayList();
@@ -18,7 +19,9 @@ public class Main {
 
     private static int year;
     private static int countOfMatches;
+    private static int matchId;
     private static int runsConcededPerTeam;
+    private static int extraRuns;
     private static int runsConcededPerBowlerOld;
     private static int runsConcededPerBowlerNew;
     private static int ballsBowled;
@@ -187,14 +190,15 @@ public class Main {
 
     private static void getExtraRunsPerTeam() {
         for (Delivery delivery : deliveries) {
+            matchId = delivery.getId();
 
-            if (yearIdList.contains(delivery.getId())) {
-                String bowlTeam = delivery.getBowlingTeam();
+            if (yearIdList.contains(matchId)) {
+                bowlTeam = delivery.getBowlingTeam();
                 runsConcededPerTeam = delivery.getExtraRuns();
 
                 if (extraRunsPerTeam.containsKey(bowlTeam)) {
-                    int extras = extraRunsPerTeam.get(bowlTeam);
-                    extraRunsPerTeam.put(bowlTeam, extras + runsConcededPerTeam);
+                    extraRuns = extraRunsPerTeam.get(bowlTeam);
+                    extraRunsPerTeam.put(bowlTeam, extraRuns + runsConcededPerTeam);
                 } else
                     extraRunsPerTeam.put(bowlTeam, runsConcededPerTeam);
             }
@@ -210,14 +214,14 @@ public class Main {
 
     private static void getTopEconomicalBowlers() {
         for (Delivery delivery : deliveries) {
-            if (yearIdList.contains(delivery.getId())) {
+            matchId = delivery.getId();
 
+            if (yearIdList.contains(matchId)) {
                 bowlerName = delivery.getBowler();
 
                 runsConcededPerBowlerNew = delivery.getWideRuns() + delivery.getByeRuns() + delivery.getLegByeRuns() + delivery.getNoBallRuns() + delivery.getPenaltyRuns() + delivery.getBastmanRuns() + delivery.getExtraRuns();
 
                 if (economyOfBowlers.containsKey(bowlerName)) {
-
                     bowlerStats = economyOfBowlers.get(bowlerName);
 
                     runsConcededPerBowlerOld = bowlerStats.get(RUNS);
@@ -230,12 +234,12 @@ public class Main {
 
                     ballsBowled += 1;
 
-                    if(delivery.getNoBallRuns() > 0 || delivery.getWideRuns() > 0)
+                    if (delivery.getNoBallRuns() > 0 || delivery.getWideRuns() > 0)
                         ballsBowled -= 1;
 
                     bowlerStats.set(BALLS, ballsBowled);
 
-                    if(ballsBowled == TOTAL_BALLS_IN_OVER) {
+                    if (ballsBowled == TOTAL_BALLS_IN_OVER) {
                         bowlerStats.set(BALLS, OVER_ENDED);
                         bowlerStats.set(OVERS, oversBowled + 1);
                         bowlerStats.set(ECONOMY, (int) (bowlerStats.get(RUNS) / bowlerStats.get(OVERS)));
