@@ -2,10 +2,8 @@ import com.sun.source.tree.Tree;
 
 import java.io.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.*;
+import java.util.Iterator;
 
 public class IPLAnalysis {
 
@@ -78,7 +76,7 @@ public class IPLAnalysis {
                 deliveries = line.split(",");
 
                 //Third part begin
-                if(idList1.contains(Integer.parseInt(deliveries[0]))) { //If match year is same as 2016
+                if(idList1.contains(Integer.parseInt(deliveries[0]))) { //If match year is same as 2017
                     String bowlTeam = deliveries[3];
                     conceded1 = Integer.parseInt(deliveries[16]);
 
@@ -154,8 +152,26 @@ public class IPLAnalysis {
         }
         System.out.println();
 
-       System.out.println("PART 4\n");
-        for (Map.Entry<String, List<Integer>> es : economyBowlers.entrySet()) {
+        Set<Map.Entry<String, List<Integer>> >entries = economyBowlers.entrySet();
+
+        Comparator<Map.Entry<String, List<Integer>>> economyComparator = new Comparator<Map.Entry<String, List<Integer>>>() {
+            @Override
+            public int compare(Map.Entry<String, List<Integer>> e1, Map.Entry<String, List<Integer>> e2) {
+                return e1.getValue().get(2) - e2.getValue().get(2);
+            }
+        };
+
+        List<Map.Entry<String, List<Integer>>> list = new ArrayList(entries);
+        Collections.sort(list, economyComparator);
+
+        LinkedHashMap<String, List<Integer>> sortedEconomy = new LinkedHashMap();
+
+        for(Map.Entry<String, List<Integer>> entry: list) {
+            sortedEconomy.put(entry.getKey(), entry.getValue());
+        }
+
+        System.out.println("PART 4\n");
+        for (Map.Entry<String, List<Integer>> es : sortedEconomy.entrySet()) {
             System.out.println("Baller : "+es.getKey());
             idList1 = es.getValue();
             System.out.println("Runs conceded : "+idList1.get(0));
