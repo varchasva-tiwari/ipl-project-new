@@ -1,7 +1,9 @@
 public class Match {
-
     private int id;
     private int year;
+    private int dlApplied;
+    private int winByRuns;
+    private int winByWickets;
     private String city;
     private String date;
     private String team1;
@@ -9,10 +11,7 @@ public class Match {
     private String tossWinner;
     private String tossDecision;
     private String result;
-    private int dlApplied;
     private String winner;
-    private int winByRuns;
-    private int winByWickets;
     private String playerOfMatch;
     private String venue;
     private String umpire1;
@@ -33,6 +32,30 @@ public class Match {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getDlApplied() {
+        return dlApplied;
+    }
+
+    public void setDlApplied(int dlApplied) {
+        this.dlApplied = dlApplied;
+    }
+
+    public int getWinByRuns() {
+        return winByRuns;
+    }
+
+    public void setWinByRuns(int winByRuns) {
+        this.winByRuns = winByRuns;
+    }
+
+    public int getWinByWickets() {
+        return winByWickets;
+    }
+
+    public void setWinByWickets(int winByWickets) {
+        this.winByWickets = winByWickets;
     }
 
     public String getCity() {
@@ -91,36 +114,12 @@ public class Match {
         this.result = result;
     }
 
-    public int getDlApplied() {
-        return dlApplied;
-    }
-
-    public void setDlApplied(int dlApplied) {
-        this.dlApplied = dlApplied;
-    }
-
     public String getWinner() {
         return winner;
     }
 
     public void setWinner(String winner) {
         this.winner = winner;
-    }
-
-    public int getWinByRuns() {
-        return winByRuns;
-    }
-
-    public void setWinByRuns(int winByRuns) {
-        this.winByRuns = winByRuns;
-    }
-
-    public int getWinByWickets() {
-        return winByWickets;
-    }
-
-    public void setWinByWickets(int winByWickets) {
-        this.winByWickets = winByWickets;
     }
 
     public String getPlayerOfMatch() {
