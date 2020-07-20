@@ -1,0 +1,20 @@
+select m.season as Season, count(m.season) as `Number Of Matches`
+from matches m
+group by m.season
+order by season;
+
+select m.season as `Season`, m.winner as `Winner Team`, count(m.winner) as `Number of Matches Won` 
+from matches m 
+where (m.result!='tie' and m.result!='no result') 
+group by m.winner, m.season
+order by m.season, m.winner;
+
+select d.bowling_team as BowlingTeam, sum(extra_runs) as ExtraRuns
+from deliveries d
+inner join matches m
+on d.match_id = m.id
+where m.season = '2016'
+group by d.bowling_team
+order by d.bowling_team;
+
+
