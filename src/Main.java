@@ -88,7 +88,7 @@ public class Main {
                 match.setCity(matchData[MATCH_CITY]);
                 match.setDate(matchData[MATCH_DATE]);
                 match.setTeam1(matchData[MATCH_TEAM1]);
-                match.setTossWinner(matchData[MATCH_WINNER]);
+                match.setTossWinner(matchData[MATCH_TOSS_WINNER]);
                 match.setTossDecision(matchData[MATCH_TOSS_DECISION]);
                 match.setResult(matchData[MATCH_RESULT]);
                 match.setDlApplied(Integer.parseInt(matchData[MATCH_DL_APPLIED]));
